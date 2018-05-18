@@ -1,0 +1,80 @@
+\documentclass{hw121}              % make sure that hw121.cls is in the same directory
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{commath}
+\usepackage{listings}
+\usepackage{mathtools}
+
+\usepackage{hyperref}
+
+\hwauthor{Andrew Huang}{amh877@nyu.edu}
+\hwcourse{Parallel Computing}
+\hwrecitation{}
+\hwno{1}
+%\hwpartner{Rajiv Gandhi}
+%\hwpartner{Chris Callison-Burch}
+% \date{}  % uncomment this line to suppress the current date in the title
+% \date{Due: Never}  % or uncomment this line to manually add a date
+% \hwonelateday                   % uncomment either this line or the next to
+% \hwtwolatedays                  % indicate that you are using an extension
+
+\begin{document}
+%	\maketitle
+	\hwproblem
+	\hwsubproblem
+	$\mathrm{my\_first\_i} = 0 $\\
+	$\mathrm{my\_last\_i} = p $
+	\hwsubproblem
+		$\mathrm{my\_first\_i} = 0 $\\
+	$\mathrm{my\_last\_i} = p - n\%p$   essentially use only what u need to maximize parallelization.
+	\hwproblem
+	\hwsubproblem
+	$\mathrm{core0\_adds} = p-1$\\
+	$\mathrm{core0\_receives} = p-1$
+	\hwsubproblem
+		$\mathrm{core0\_adds} = \log_2{p}$\\
+	$\mathrm{core0\_receives} = \log_2{p}$
+	\hwsubproblem
+	\begin{tabular}{ l | c | r }
+		2 & 1 & 1 \\
+		4 & 3 & 2 \\
+		8 & 7 & 3 \\
+		16 & 15 & 4 \\
+		32 & 31 & 5 \\
+		64 & 63 & 6 \\
+		128 & 127 & 7 \\
+		256 & 255 & 8 \\
+		512 & 511 & 9 \\
+		1024 & 1023 & 10 \\
+	\end{tabular}
+	\hwsubproblem
+	Doing the receive is much slower, because computation is much faster than reading from cache.
+	
+	\hwproblem
+		You should try to speedup the parts of the program which take the most amount of time, and this will make sure that the program will gain the most speedup rather than optimizing small for loops.
+	\hwproblem
+	Data Level Parallelism
+	\begin{itemize}
+		\item Manipulates the amount of data that can be processed by the processor, like word size. Contrasts with Task Parallelism
+	\end{itemize}
+	Instruction Parallelism
+	\begin{itemize}
+		\item Instructions can be rerun and run in a different order in order to achieve parallelism. 
+	\end{itemize}
+	Task Parallelism
+	
+	\begin{itemize}
+		\item Different calculations can be done on separate and independent parts of the data at the same time. 
+	\end{itemize}
+	\hwproblem
+		This is because with shared memory, if computation does not depend on the computed value of another core, if each core has its own discrete memory, the lookup time will be faster. 
+	\hwproblem
+
+	\hwsubproblem
+	Yes, we can, as we increment the first half of the array with the second half, none of the values are dependent on each other. 
+	\hwsubproblem
+	$n/2$, this is because there are no more immediate subtasks which can be parallelized besides possible sequential tasks after and before, so this is the fastest possible speedup
+	
+	
+\end{document}
